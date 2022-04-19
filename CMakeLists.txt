@@ -29,7 +29,6 @@ project(pico-mposite)
 pico_sdk_init()
 
 
-include(pico_sdk_import.cmake)
 
 enable_language( C CXX ASM )
 
@@ -52,6 +51,7 @@ target_link_libraries(
         pico-mposite PRIVATE
         pico_stdlib
         pico_mem_ops
+		hardware_gpio
         hardware_pio
         hardware_dma
         hardware_irq

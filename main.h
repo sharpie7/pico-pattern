@@ -46,10 +46,12 @@
 	
 #endif
 
-const uint BUTTON_PIN = 12;
+const uint BUTTON_PIN = 28;
+const uint LED_PIN = 25;
 
 int main(void);
 
+void full_white(void);
 void colour_bars(void);
 void test_circle(void);
 void demo_spinny_cube(void);

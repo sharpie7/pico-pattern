@@ -99,18 +99,63 @@ int main() {
 	gpio_init(BUTTON_PIN);
 	gpio_pull_up(BUTTON_PIN);
 	gpio_set_dir(BUTTON_PIN, GPIO_IN);
+	gpio_init(LED_PIN);
+	gpio_set_dir(LED_PIN, GPIO_OUT);
 
 
     int i =0;
 	int but = 1;
+	int but_ready_for_down = true;
+	int but_ready_for_up = false;
+	int but_up_count = 0;
+	int led_count = 0;
     colour_bars();
+	
+	gpio_put(LED_PIN,1);
+	sleep_ms(500);
+	gpio_put(LED_PIN,0);
 
-	while(true)
+	while(true) {
 		sleep_ms(10);
+		led_count ++;
+		if (led_count<40*(i+1))
+			gpio_put(LED_PIN,(led_count%40)<20);
+		else if (led_count <40*(i+1)+60)
+			gpio_put(LED_PIN,0);
+		else
+			led_count = 0;
+			
 		but = gpio_get(BUTTON_PIN);
-		if (but ==0) {
-				test_circle();
+		if (!but) {
+				if (but_ready_for_down) {
+					i=(i+1)%3;
+					switch (i) {
+					case 0: colour_bars();
+					break;
+					case 1: full_white();
+					break;
+					default:
+						test_circle();
+					}
+				}
+				but_ready_for_down = false;
+				but_ready_for_up = true;
+		} else {
+			if (but_ready_for_up) {
+				but_up_count = 0;
+			}
+			if (but_up_count < 2) 
+				but_up_count ++;
+			else
+				but_ready_for_down = true;
+			but_ready_for_up = false;
 		}
+	}
+}
+
+void full_white() {
+	set_border(col_white);
+	cls(col_white);
 }
 
 void colour_bars() {

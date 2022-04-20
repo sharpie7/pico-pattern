@@ -1,13 +1,6 @@
 #
-# Title:	        Pico-mposite Makefile
-# Description:		Makefile 
-# Author:	        Dean Belfield
-# Created:	        31/01/2021
-# Last Updated:	        19/02/2022
+# Title:	        Pico-pattern Makefile
 #
-# Modinfo:
-# 01/02/2022:		Added this header comment, fixed typo in executable filename, added extra target sources
-# 19/02/2022:           Added terminal.c
 
 #
 # See the official documentation https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html
@@ -23,7 +16,7 @@ endif()
 # note: this must happen before project()
 include(pico_sdk_import.cmake)
 
-project(pico-mposite)
+project(pico-pattern)
 
 # initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
@@ -32,13 +25,13 @@ pico_sdk_init()
 
 enable_language( C CXX ASM )
 
-add_executable(pico-mposite)
+add_executable(pico-pattern)
 
-pico_generate_pio_header(pico-mposite ${CMAKE_CURRENT_LIST_DIR}/cvideo_sync.pio)
-pico_generate_pio_header(pico-mposite ${CMAKE_CURRENT_LIST_DIR}/cvideo_data.pio)
+pico_generate_pio_header(pico-pattern ${CMAKE_CURRENT_LIST_DIR}/cvideo_sync.pio)
+pico_generate_pio_header(pico-pattern ${CMAKE_CURRENT_LIST_DIR}/cvideo_data.pio)
 
 target_sources(
-        pico-mposite PRIVATE
+        pico-pattern PRIVATE
         main.c
         cvideo.c
         graphics.c
@@ -48,7 +41,7 @@ target_sources(
 )
 
 target_link_libraries(
-        pico-mposite PRIVATE
+        pico-pattern PRIVATE
         pico_stdlib
         pico_mem_ops
 		hardware_gpio
@@ -57,11 +50,11 @@ target_link_libraries(
         hardware_irq
 )
 
-pico_add_extra_outputs(pico-mposite)
+pico_add_extra_outputs(pico-pattern)
 
 # add url via pico_set_program_url
 #
-# example_auto_set_url(pico-mposite)
+# example_auto_set_url(pico-pattern)
 
 # generate .hex file and .pio.h file for the RP2040 datasheet (to make sure
 # the datasheet always shows the output of the latest pioasm version)
@@ -101,4 +94,4 @@ add_custom_command(
 )
 
 
-add_dependencies(pico-mposite pio_cvideo_sync_datasheet pio_cvideo_data_datasheet)
+add_dependencies(pico-pattern pio_cvideo_sync_datasheet pio_cvideo_data_datasheet)

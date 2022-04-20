@@ -43,6 +43,8 @@ Power
 
 ## Use
 
+Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean!  
+
 Program the Pi Pico as described above. Construct the hardware and connect to a suitable monitor. Power On!
 
 The external button will advance through the different patterns. The LED on the Pi Pico will flash the number of the current pattern.

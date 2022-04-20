@@ -51,12 +51,9 @@ const uint LED_PIN = 25;
 
 int main(void);
 
+void cross(void);
+void dots(void);
+void grid(void);
 void full_white(void);
 void colour_bars(void);
 void test_circle(void);
-void demo_spinny_cube(void);
-void demo_mandlebrot(void);
-void demo_terminal(void);
-
-void render_spinny_cube(int xo, int yo, double the, double psi, double phi, bool filled);
-void render_mandlebrot(void);

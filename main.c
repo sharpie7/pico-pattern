@@ -144,13 +144,13 @@ void colour_bars() {
 }
 void test_circle() {
     set_border(col_black);
-	cls(7);
+	cls(col_green);
 
 	draw_line(0,0,width-1,0,col_white);
 	draw_line(width-1,0,width-1,height-1,col_white);
 	draw_line(width-1,height-1,0,height-1,col_white);
 	draw_line(0,height-1,0,0,col_white);
-	draw_circle(width/2,height/2,height/2-10,0,0);
+	draw_circle(width/2,height/2,height/2-10,col_black,0);
 	
 
 }

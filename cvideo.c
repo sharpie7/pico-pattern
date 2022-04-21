@@ -57,6 +57,7 @@ int height = 256;
  * All sync pulses are active low
  */
 
+
 // Horizontal sync with gap for pixel data
 //
 unsigned short hsync[32] = {
@@ -71,6 +72,7 @@ unsigned short border[32] = {
     BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, BORD, 
 };
 
+#if opt_colour!=2
 // Vertical sync (long/long)
 //
 unsigned short vsync_ll[32] = {
@@ -91,6 +93,20 @@ unsigned short vsync_ls[32] = {
     VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSHI, // Long sync pulse
     VSLO, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, VSHI, // Short sync pulse
 };
+
+#else
+	
+unsigned short vsync_ll[32] = {
+    VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, 
+    VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO, VSLO,
+};
+
+#define vsync_ss border
+#define vsync_ls border
+
+
+#endif
+
 
 /*
  * The main routine sets up the whole shebang
@@ -127,7 +143,7 @@ int initialise_cvideo(void) {
         sm_sync,								// The state machine number
         dma_channel_0,							// The DMA channel
         DMA_SIZE_16,                            // Size of each transfer
-        32,										// Number of bytes to transfer
+        32,										// Number of transfers to make
         cvideo_dma_handler						// The DMA handler
     );
     pio_sm_set_enabled(pio_0, sm_sync, true);	// Enable the PIO state machine
@@ -152,7 +168,7 @@ int initialise_cvideo(void) {
         sm_data,
         dma_channel_1,							// On DMA channel 1
         DMA_SIZE_8,                             // Size of each transfer
-        width,									// The bitmap width
+        width,									// The bitmap width - number of transfers to make
         NULL									// But there is no DMA interrupt for the pixel data
     ); 
     pio_sm_set_enabled(pio_0, sm_data, true);	// Enable the PIO state machine

@@ -42,9 +42,10 @@ void cvideo_data_initialise_pio(PIO pio, uint sm, uint offset, uint pin_base, ui
     for(uint i=pin_base; i<pin_base+pin_count; i++) {
         pio_gpio_init(pio, i);
     }
-    pio_sm_set_consecutive_pindirs(pio, sm, pin_base, pin_count, true);
-    pio_sm_config c = cvideo_data_program_get_default_config(offset);
-    sm_config_set_out_pins(&c, pin_base, pin_count);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin_base, pin_count, true); // Set pin directions
+    pio_sm_config c = cvideo_data_program_get_default_config(offset);   // Get default config into c
+    sm_config_set_out_pins(&c, pin_base, pin_count);                    // Set output pins
+	sm_config_set_in_pins(&c, pin_base);                                // Set input pins for non-zero pin_base
     sm_config_set_out_shift(&c, false, true, 8);
     pio_sm_init(pio, sm, offset, &c);
     pio->sm[sm].clkdiv = (uint32_t) (freq * (1 << 16));

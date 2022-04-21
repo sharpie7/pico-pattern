@@ -19,7 +19,7 @@
 #define piofreq_0 5.25f         // Clock frequence of state machine for PIO handling sync
 #define piofreq_1_192 9.34f
 #define piofreq_1_256 7.00f     // Clock frequency of state machine for PIO handling pixel data at various resolutions
-#define piofreq_1_320 5.60f
+#define piofreq_1_320 5.6f
 #define piofreq_1_342 5.222f
 #define piofreq_1_640 2.80f
 
@@ -62,8 +62,8 @@
     #define HSHI        0x4008
     #define VSLO        HSLO
     #define VSHI        HSHI
-    #define BORD        0x8000
-    #define gpio_base   0
+    #define BORD        0x8009
+    #define gpio_base   16
     #define gpio_count  4
 #endif
 

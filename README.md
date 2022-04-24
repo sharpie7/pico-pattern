@@ -14,7 +14,7 @@ Pico-pattern offers a range of typical video test patterns including:
 - Dot Grid
 - Centre Cross Hairs
 
-![Pico Pattern](photos/img1.png)
+![Pico Pattern](photos/img1.jpg)
 
 ## Software Build and Deployment
 
@@ -47,9 +47,9 @@ My version is constructed using a Pimoroni Pico Lipo which creates a battery pow
 
 I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a 3D printed carrier with button extensions to reach the buttons on board. The carrier is glued to the lid of the case and the board held in with M3 machine screws directly into the plastic.
 
-![Pico Pattern Case](photos/img2.png)
+![Pico Pattern Case](photos/img2.jpg)
 
-![Pico Pattern Open](photos/img3.png)
+![Pico Pattern Open](photos/img3.jpg)
 
 
 ## Hardware for Normal Pi Pico

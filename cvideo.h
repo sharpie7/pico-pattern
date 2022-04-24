@@ -36,6 +36,7 @@
 	#define BORD        0x8000
     #define gpio_base   0
     #define gpio_count  5
+	#define gpio_data_count gpio_count
  
  // For debugging you may use these values to output hsync and vsync on the same pins as the colour mode 
  // as well as the normal monochrome composite sync/video
@@ -55,6 +56,7 @@
     #define BORD        0x8000
     #define gpio_base   0
     #define gpio_count  10
+	#define gpio_data_count gpio_count
 #else
 	#define colour_base 0x00
     #define colour_max  0x7
@@ -62,9 +64,13 @@
     #define HSHI        0x4008
     #define VSLO        HSLO
     #define VSHI        HSHI
-    #define BORD        0x8009
+	// BORD must contain the sync level information as it is written by the sync PIO and not the data PIO
+    #define BORD        0x8008
     #define gpio_base   16
     #define gpio_count  4
+	// Setting gpio_data_count to less than gpio_count stops the data PIO writing to the bits only
+	// used for sync. Therefore the sync doesn't need to be included in the data bitmap
+	#define gpio_data_count 3
 #endif
 
 unsigned char * bitmap;

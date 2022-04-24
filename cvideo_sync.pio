@@ -28,7 +28,6 @@
     out X, 16       [15]	; Get 16 bits from DMA
     nop             [15]	; Just padding to time this out
     jmp !X loop_2   [15]	; Loop until we hit data again
-;	mov pins, X
 
 .wrap						; Loop back to wrap_target
 

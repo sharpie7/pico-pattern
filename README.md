@@ -4,6 +4,8 @@ Pico-pattern is a video pattern generator based on the Raspberry Pi Pico for tes
 
 The main target of pico-pattern is to generate video with TTL-compatible R,G,B and Composite Sync at 50Hz as used by the BBC Micro.
 
+** Currently this version is experimental and untested on a real Cub Monitor! **
+
 Pico-pattern offers a range of typical video test patterns including:
 
 - Colour Bars
@@ -35,15 +37,22 @@ This should generate a file `build/pico-pattern.uf2`.
 
 Connect a Pi Pico to the computer while holding down the BOOTSEL button. Copy the `build/pico-pattern.uf2` file to the Pi Pico virtual drive.
 
-## Hardware
+## Hardware for Pimoroni Pico Lipo
 
-Video 
+My version is constructed using a Pimoroni Pico Lipo which creates a battery powered version with a minimum of external components. The schematic is below. In the Pico Lipo the "boot" button doubles as a user button to select the pattern to display.
 
-Power
+![Pico Lipo Schematic](schematic.png)
 
-## Use
+## Hardware for Normal Pi Pico
 
-Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean!  
+Connect the DIN socket as shown for the Pico Lipo. If you have a 5V system bus then connect the centre pin to 5V rather than 3.3V for a closer match to a real BBC Micro.
+
+For a normal Pi you will need to change the software to enable a pull up for the user button in the file `main.h`.
+
+You will need to choose a suitable power option. The easiest is just to power from the USB port via an external supply or a USB boost battery. The pattern generator draws about 20mA at 5V or 60mA at 3V so powering from 2 or 3 AA batteries would also be an option. See the Pi Pico Datasheet for information on how to attach an external power supply.
+
+
+## Use 
 
 Program the Pi Pico as described above. Construct the hardware and connect to a suitable monitor. Power On!
 
@@ -56,7 +65,10 @@ The external button will advance through the different patterns. The LED on the 
 - 5 = Centre Cross Hairs
 - 6 = Border and circle
 
+
 ## Notes
+
+Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean! 
 
 The Pi Pico is a 3.3V part, but this should be ample headroom over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design.
 

@@ -35,26 +35,22 @@
     #define col_magenta rgb(7,0,7)
     #define col_cyan    rgb(0,7,7)
 #else
-	// #define col_black   0x0
-    // #define col_white   0x7
-    // #define col_red     0x1
-    // #define col_green   0x2
-    // #define col_blue    0x4
-    // #define col_yellow  0x3
-    // #define col_magenta 0x5
-    // #define col_cyan    0x6
-	#define col_black   0x8
-    #define col_white   0xf
-    #define col_red     0x9
-    #define col_green   0xa
-    #define col_blue    0xc
-    #define col_yellow  0xb
-    #define col_magenta 0xd
-    #define col_cyan    0xe
+	#define col_black   0x0
+    #define col_white   0x7
+    #define col_red     0x1
+    #define col_green   0x2
+    #define col_blue    0x4
+    #define col_yellow  0x3
+    #define col_magenta 0x5
+    #define col_cyan    0x6
+
 	
 #endif
 
-const uint BUTTON_PIN = 28;
+const uint BUTTON_PIN = 23;
+// Set to true for most pins, or false if using the BOOT button
+// on a Pimoroni Pico-Lipo
+const bool BUTTON_PIN_PULLUP = false;
 const uint LED_PIN = 25;
 
 int main(void);

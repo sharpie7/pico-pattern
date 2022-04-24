@@ -34,7 +34,8 @@
 int main() {
     initialise_cvideo();    // Initialise the composite video stuff
 	gpio_init(BUTTON_PIN);
-	gpio_pull_up(BUTTON_PIN);
+	if (BUTTON_PIN_PULLUP)
+		gpio_pull_up(BUTTON_PIN);
 	gpio_set_dir(BUTTON_PIN, GPIO_IN);
 	gpio_init(LED_PIN);
 	gpio_set_dir(LED_PIN, GPIO_OUT);
@@ -48,15 +49,12 @@ int main() {
 	int led_count = 0;
     colour_bars();
 	
-	gpio_put(LED_PIN,1);
-	sleep_ms(500);
-	gpio_put(LED_PIN,0);
 
 	while(true) {
 		sleep_ms(10);
 		led_count ++;
 		if (led_count<40*(i+1))
-			gpio_put(LED_PIN,(led_count%40)<20);
+			gpio_put(LED_PIN,(led_count%40)<5);
 		else if (led_count <40*(i+1)+60)
 			gpio_put(LED_PIN,0);
 		else

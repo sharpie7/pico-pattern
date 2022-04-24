@@ -61,8 +61,8 @@ int height = 256;
 // Horizontal sync with gap for pixel data
 //
 unsigned short hsync[32] = {
-    HSLO, HSLO, HSHI, HSHI, HSHI, HSHI, BORD, BORD, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, BORD, BORD, BORD,
+    HSLO, HSLO, HSHI, HSHI, HSHI, HSHI, BORD, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, BORD, BORD, BORD, BORD,
 };
 
 // Horizontal sync for top and bottom borders
@@ -157,7 +157,7 @@ int initialise_cvideo(void) {
 		sm_data,
 		offset_1,
 		gpio_base,
-		gpio_count,
+		gpio_data_count,
 		piofreq_1_320
 	);
 
@@ -239,7 +239,7 @@ void set_border(unsigned char colour) {
     unsigned short c = BORD | (colour_base + colour);
     
     for(int i = 6; i <32; i++) {                // Skip the first three hsync values
-        if(hsync[i] & BORD) {                   // If the border bit is set in the hsync
+        if((hsync[i] & BORD) == BORD) {         // If the border bit is set in the hsync
             hsync[i] = c;                       // Then write out the new colour (with the BORD bit set)
         }
         border[i] = c;                          // We can just write the values out to the border table

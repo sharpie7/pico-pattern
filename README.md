@@ -14,6 +14,8 @@ Pico-pattern offers a range of typical video test patterns including:
 - Dot Grid
 - Centre Cross Hairs
 
+![Pico Pattern](photos/img1.png)
+
 ## Software Build and Deployment
 
 If you want to use the pre-built output then you can just download the file `build/pico-pattern.uf2` and skip to the last paragraph of this section. 
@@ -42,6 +44,13 @@ Connect a Pi Pico to the computer while holding down the BOOTSEL button. Copy th
 My version is constructed using a Pimoroni Pico Lipo which creates a battery powered version with a minimum of external components. The schematic is below. In the Pico Lipo the "boot" button doubles as a user button to select the pattern to display.
 
 ![Pico Lipo Schematic](schematic.png)
+
+I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a 3D printed carrier with button extensions to reach the buttons on board. The carrier is glued to the lid of the case and the board held in with M3 machine screws directly into the plastic.
+
+![Pico Pattern Case](photos/img2.png)
+
+![Pico Pattern Open](photos/img3.png)
+
 
 ## Hardware for Normal Pi Pico
 

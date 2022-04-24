@@ -16,6 +16,8 @@ Pico-pattern offers a range of typical video test patterns including:
 
 ![Pico Pattern](photos/img1.jpg)
 
+I think that the noise visible on this photo is due to the 3.3V signals not being quite compatible with the RGB to SCART lead I was using.
+
 ## Software Build and Deployment
 
 If you want to use the pre-built output then you can just download the file `build/pico-pattern.uf2` and skip to the last paragraph of this section. 
@@ -45,7 +47,7 @@ My version is constructed using a Pimoroni Pico Lipo which creates a battery pow
 
 ![Pico Lipo Schematic](schematic.png)
 
-I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a 3D printed carrier with button extensions to reach the buttons on board. The carrier is glued to the lid of the case and the board held in with M3 machine screws directly into the plastic.
+I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a 3D printed carrier with button extensions to reach the buttons on board. The carrier is glued to the lid of the case and the board held in with M3 machine screws directly into the plastic. Suitable holes are cut in the case for the button extensions, USB connector, DIN socket and to view the LEDs. 
 
 ![Pico Pattern Case](photos/img2.jpg)
 
@@ -56,7 +58,7 @@ I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a
 
 Connect the DIN socket as shown for the Pico Lipo. If you have a 5V system bus then connect the centre pin to 5V rather than 3.3V for a closer match to a real BBC Micro.
 
-For a normal Pi you will need to change the software to enable a pull up for the user button in the file `main.h`.
+For a normal Pi Pico you will need to add an external user button and change the software to enable a pull up for the user button in the file `main.h`.
 
 You will need to choose a suitable power option. The easiest is just to power from the USB port via an external supply or a USB boost battery. The pattern generator draws about 20mA at 5V or 60mA at 3V so powering from 2 or 3 AA batteries would also be an option. See the Pi Pico Datasheet for information on how to attach an external power supply.
 
@@ -82,5 +84,7 @@ Dean is very disparaging about Pico-mposite, but I think it works really well an
 The Pi Pico is a 3.3V part, but this should be ample headroom over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design.
 
 Professional video pattern generators often include the pattern over the full area of the scan (including areas that are normally off-screen). For most patterns this version only includes the pattern within the border of the normal picture. For my specific application this is preferable, but it wouldn't be a big job to modify the behaviour.
+
+Currently the pattern generator only ouputs RGB video. It could be adapted to use the existing work in Pico-mposite to output other video formats.
 
 The video output from this device is not interlaced.

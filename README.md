@@ -77,6 +77,13 @@ The external button will advance through the different patterns. The LED on the 
 - 6 = Border and circle
 
 
+## Update (2022-05-14) Testing on Real Microvitec Cub Monitors
+
+I had the chance to test on some Cub monitors:
+- It works fine on some monitors, but others don't sync (but do display colours). Maybe this is a problem with the 3.3V output.
+- On all monitors the output is on the left of the screen and doesn't fill the whole width horizontally. Seems like the horizontal timing needs some updates.
+
+
 ## Notes
 
 Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean! 

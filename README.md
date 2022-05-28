@@ -4,8 +4,6 @@ Pico-pattern is a video pattern generator based on the Raspberry Pi Pico for tes
 
 The main target of pico-pattern is to generate video with TTL-compatible R,G,B and Composite Sync at 50Hz as used by the BBC Micro.
 
-** Currently this version is experimental and untested on a real Cub Monitor! **
-
 Pico-pattern offers a range of typical video test patterns including:
 
 - Colour Bars
@@ -69,12 +67,14 @@ Program the Pi Pico as described above. Construct the hardware and connect to a 
 
 The external button will advance through the different patterns. The LED on the Pi Pico will flash the number of the current pattern.
 
-- 1 = Colour Bars
-- 2 = White Screen
-- 3 = Grid
-- 4 = Dots
-- 5 = Centre Cross Hairs
-- 6 = Border and circle
+- 1 = Colour Bars Vertical
+- 2 = Colour Bars Horizontal
+- 3 = White Screen
+- 4 = Grid
+- 5 = Dots
+- 6 = Centre Cross Hairs
+- 7 = Chess Pattern
+- 8 = Border and circle
 
 
 ## Update (2022-05-14) Testing on Real Microvitec Cub Monitors
@@ -88,10 +88,12 @@ I had the chance to test on some Cub monitors:
 
 Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean! 
 
-The Pi Pico is a 3.3V part, but this should be ample headroom over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design.
+The Pi Pico is a 3.3V part, but this should be over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design. ** Note that due to the lower voltage this pattern generator is more sensitive to bad connections than a 5V source would be. If there are problems then check all the connectors along the video path are clean and properly connected. **
 
 Professional video pattern generators often include the pattern over the full area of the scan (including areas that are normally off-screen). For most patterns this version only includes the pattern within the border of the normal picture. For my specific application this is preferable, but it wouldn't be a big job to modify the behaviour.
 
-Currently the pattern generator only ouputs RGB video. It could be adapted to use the existing work in Pico-mposite to output other video formats.
+The patterns generated are slightly wider than a real BBC Micro, but near enough to be suitable for adjusting screens if you are not looking for ultimate precision.
+
+Currently the pattern generator only outputs RGB video. It could be adapted to use the existing work in Pico-mposite to output other video formats.
 
 The video output from this device is not interlaced.

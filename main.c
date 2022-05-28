@@ -47,15 +47,16 @@ int main() {
 	int but_ready_for_up = false;
 	int but_up_count = 0;
 	int led_count = 0;
-    colour_bars();
+    colour_bars_v();
 	
 
 	while(true) {
+		const int led_delay = 30;
 		sleep_ms(10);
 		led_count ++;
-		if (led_count<40*(i+1))
-			gpio_put(LED_PIN,(led_count%40)<5);
-		else if (led_count <40*(i+1)+60)
+		if (led_count<led_delay*(i+1))
+			gpio_put(LED_PIN,(led_count%led_delay)<5);
+		else if (led_count <led_delay*(i+1)+60)
 			gpio_put(LED_PIN,0);
 		else
 			led_count = 0;
@@ -63,17 +64,21 @@ int main() {
 		but = gpio_get(BUTTON_PIN);
 		if (!but) {
 				if (but_ready_for_down) {
-					i=(i+1)%6;
+					i=(i+1)%8;
 					switch (i) {
-					case 0: colour_bars();
+					case 0: colour_bars_v();
 					break;
-					case 1: full_white();
+					case 1: colour_bars_h();
 					break;
-					case 2: grid();
+					case 2: full_white();
 					break;
-					case 3: dots();
+					case 3: grid();
 					break;
-					case 4: cross();
+					case 4: dots();
+					break;
+					case 5: cross();
+					break;
+					case 6: chess();
 					break;
 					default:
 						test_circle();
@@ -97,13 +102,13 @@ int main() {
 void grid() {
 	set_border(col_black);
 	cls(col_black);
-	const int d=(width+10)/6;
-	for (int x = 0; x<3; x++) {
+	const int d=(width+10)/12;
+	for (int x = 0; x<8; x++) {
 		draw_line(width/2+d*x,0,width/2+d*x,height-1,col_white);
 		if (x>0)
 			draw_line(width/2-d*x,0,width/2-d*x,height-1,col_white);
 	}
-	for (int y = 0; y<3; y++) {
+	for (int y = 0; y<6; y++) {
 		draw_line(0,height/2+d*y,width-1,height/2+d*y,col_white);
 		if (y>0)
 			draw_line(0,height/2-d*y,width-1,height/2-d*y,col_white);
@@ -131,7 +136,7 @@ void full_white() {
 	cls(col_white);
 }
 
-void colour_bars() {
+void colour_bars_v() {
 	const int rectw = width/8;
 	const unsigned char c[8] = {col_white, col_yellow, col_cyan, col_green, col_magenta, col_red, col_blue, col_black};
 	set_border(col_black);
@@ -140,6 +145,28 @@ void colour_bars() {
 		draw_rect(i*rectw,0,i*rectw+rectw-1,height,c[i],1);
 	}
 }
+
+void colour_bars_h() {
+	const int recth = height/8;
+	const unsigned char c[8] = {col_white, col_yellow, col_cyan, col_green, col_magenta, col_red, col_blue, col_black};
+	set_border(col_black);
+	cls(col_black);
+	for (int i =0; i<8 ; i++) {
+		draw_rect(0,i*recth,width, i*recth+recth-1,c[i],1);
+	}
+}
+
+void chess() {
+	set_border(col_black);
+	cls(col_black);
+	const int n=5;
+	const int d=(width+10)/(2*n);
+	for (int x = -n; x<n; x++) 
+		for (int y = -n; y<n; y++)
+			if ((x+y)%2)
+				draw_rect(width/2+x*d,height/2+y*d,width/2+x*d+d-1,height/2+y*d+d-1,col_white,1);
+}
+
 void test_circle() {
     set_border(col_black);
 	cls(col_green);

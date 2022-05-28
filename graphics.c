@@ -286,6 +286,8 @@ void draw_triangle(int x1, int y1, int x2, int y2, int x3, int y3, unsigned char
 // - c: Colour
 //
 void draw_horizontal_line(int y1, int x1, int x2, int c) {
+	if (y1<0 || y1>=height)				// Don't draw off the top or bottom of the screen
+		return;
     if(x1 > x2) {                       // Always draw the line from left to right
         swap(&x2, &x1);
     }
@@ -295,11 +297,11 @@ void draw_horizontal_line(int y1, int x1, int x2, int c) {
         }
         x1 = 0;                         // Clip x1 to 0
     }
-    if(x2 > width) {                    // if x2 > width
-        if(x1 > width) {                // if x1 is also > width
+    if(x2 >= width) {                    // if x2 > width
+        if(x1 >= width) {                // if x1 is also > width
             return;                     // Don't need to draw
         }
-        x2 = width;                     // Clip x2 to width
+        x2 = width-1;                     // Clip x2 to width
     }
 //  for(int i = x1; i <= x2; i++) {     // This is slow...
 //      plot(i, y1, c);                 // so we'll use memset to fill the line in memory

@@ -59,5 +59,7 @@ void cross(void);
 void dots(void);
 void grid(void);
 void full_white(void);
-void colour_bars(void);
+void colour_bars_v(void);
+void colour_bars_h(void);
+void chess(void);
 void test_circle(void);

@@ -52,7 +52,7 @@ int main() {
 	int but_down_count = 0;
 	int led_count = 0;
     colour_bars_h(0);
-	
+	print_string(0,height/16,"github.com/sharpie7/pico-pattern",col_black,col_white);
 
 	while(true) {
 
@@ -184,7 +184,6 @@ void colour_bars_h(int sub_c) {
 	for (int i =0; i<8 ; i++) {
 		draw_rect(0,i*recth,width, i*recth+recth-1,c[(sub_c%2)?i:7-i],1);
 	}
-	print_string(0,recth/2,"github.com/sharpie7/pico-pattern",col_black,col_white);
 }
 
 void chess(int sub_c) {

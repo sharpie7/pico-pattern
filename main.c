@@ -193,7 +193,7 @@ void chess(int sub_c) {
 	const int d=(width+10)/(2*n);
 	for (int x = -n; x<n; x++) 
 		for (int y = -n; y<n; y++)
-			if ((x+y)%2)
+			if ((x+y+((sub_c/4)%2))%2)
 				draw_rect(width/2+x*d,height/2+y*d,width/2+x*d+d-1,height/2+y*d+d-1,sub_c_2_col(sub_c),1);
 }
 

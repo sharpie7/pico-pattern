@@ -88,9 +88,7 @@ I had the chance to test on some Cub monitors:
 
 Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean! 
 
-The Pi Pico is a 3.3V part, but this should be over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design. ** Note that due to the lower voltage this pattern generator is more sensitive to bad connections than a 5V source would be. If there are problems then check all the connectors along the video path are clean and properly connected. **
-
-Professional video pattern generators often include the pattern over the full area of the scan (including areas that are normally off-screen). For most patterns this version only includes the pattern within the border of the normal picture. For my specific application this is preferable, but it wouldn't be a big job to modify the behaviour.
+The Pi Pico is a 3.3V part, but this should be over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design. **Note that due to the lower voltage this pattern generator is more sensitive to bad connections than a 5V source would be. If there are problems then check all the connectors along the video path are clean and properly connected.**
 
 The patterns generated are slightly wider than a real BBC Micro, but near enough to be suitable for adjusting screens if you are not looking for ultimate precision.
 

@@ -55,11 +55,12 @@ const uint LED_PIN = 25;
 
 int main(void);
 
-void cross(void);
-void dots(void);
-void grid(void);
-void full_white(void);
-void colour_bars_v(void);
-void colour_bars_h(void);
-void chess(void);
+void draw_pattern(int i,int sub_c);
+void cross(int sub_c);
+void dots(int sub_c);
+void grid(bool draw_h, bool draw_v, int sub_c);
+void full_colour(int sub_c);
+void colour_bars_v(int sub_c);
+void colour_bars_h(int sub_c);
+void chess(int sub_c);
 void test_circle(void);

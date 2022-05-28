@@ -65,23 +65,20 @@ You will need to choose a suitable power option. The easiest is just to power fr
 
 Program the Pi Pico as described above. Construct the hardware and connect to a suitable monitor. Power On!
 
-The external button will advance through the different patterns. The LED on the Pi Pico will flash the number of the current pattern.
+Short presses on the external button will advance through the different patterns. The LED on the Pi Pico will flash the number of the current pattern.
 
-- 1 = Colour Bars Vertical
-- 2 = Colour Bars Horizontal
-- 3 = White Screen
-- 4 = Grid
-- 5 = Dots
-- 6 = Centre Cross Hairs
-- 7 = Chess Pattern
-- 8 = Border and circle
+- 1 = Colour Bars Horizontal
+- 2 = Colour Bars Vertical
+- 3 = Solid Colour Screen
+- 4 = Vertical Lines
+- 5 = Horizontal Lines
+- 6 = Grid
+- 7 = Dots
+- 8 = Centre Cross Hairs
+- 9 = Chess Pattern
+- 10 = Border and circle
 
-
-## Update (2022-05-14) Testing on Real Microvitec Cub Monitors
-
-I had the chance to test on some Cub monitors:
-- It works fine on some monitors, but others don't sync (but do display colours). Maybe this is a problem with the 3.3V output.
-- On all monitors the output is on the left of the screen and doesn't fill the whole width horizontally. Seems like the horizontal timing needs some updates.
+Holding the external button will choose sub-options in the pattern. Normally this cycles through white, red, green, blue colours.
 
 
 ## Notes

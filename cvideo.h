@@ -17,8 +17,12 @@
 #include "config.h"
 
 #define piofreq_0 5.2083f         // Clock frequency of state machine for PIO handling sync
+// Clock frequency of state machine for PIO handling pixel data at various resolutions
+// NB - In this application only the 320px version is used/tested
+// Value needs to have a simple relationship to piofreq_0 to avoid jitter between HSYNC and horizontal 
+// image position - see https://github.com/breakintoprogram/pico-mposite/issues/6
 #define piofreq_1_192 9.34f
-#define piofreq_1_256 7.00f     // Clock frequency of state machine for PIO handling pixel data at various resolutions
+#define piofreq_1_256 7.00f     
 #define piofreq_1_320 5.2083f
 #define piofreq_1_342 5.2083f
 #define piofreq_1_640 2.80f

@@ -22,7 +22,8 @@
     jmp loop_1      [15]	; Loop
 
  skip_1:
-    irq set 4       [30]	; Set the IRQ to trigger the state machine cvideo_data
+	nop				[29]	; Delay to correctly centre 320 wide image with 8MHz px clock
+    irq set 4       		; Set the IRQ to trigger the state machine cvideo_data
 
  loop_2:
     out X, 16       [15]	; Get 16 bits from DMA

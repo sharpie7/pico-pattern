@@ -46,8 +46,8 @@ uint vblank_count;              // Vblank counter
 
 unsigned char * bitmap;         // Bitmap buffer
 
-width = 320;                // Bitmap dimensions             
-height = 256;
+int width = 320;                // Bitmap dimensions             
+int height = 256;
 
 /*
  * The sync tables consist of 32 entries, each one corresponding to a 2us slice of the 64us

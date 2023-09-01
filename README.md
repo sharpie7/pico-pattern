@@ -49,7 +49,7 @@ Originally, I didn't include a 3.3V to 5V level shifter (74AHCT125) because I fi
 
 The second version is constructed on pad-board with a 3D printed case.
 
-## Photos of the second versin (with level shifter on daughter board)
+## Photos of the second version (with level shifter on daughter board)
 
 ![Pico Pattern V2 Case](photos/imgn2.jpg)
 

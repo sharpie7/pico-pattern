@@ -12,9 +12,9 @@ Pico-pattern offers a range of typical video test patterns including:
 - Dot Grid
 - Centre Cross Hairs
 
-![Pico Pattern](photos/img1.jpg)
+![Pico Pattern](photos/imgn1.jpg)
 
-I think that the noise visible on this photo is due to the 3.3V signals not being quite compatible with the RGB to SCART lead I was using.
+Sorry for the usual difficulties photographing CRTs in the picture!
 
 ## Software Build and Deployment
 
@@ -43,9 +43,20 @@ Connect a Pi Pico to the computer while holding down the BOOTSEL button. Copy th
 
 My version is constructed using a Pimoroni Pico Lipo which creates a battery powered version with a minimum of external components. The schematic is below. In the Pico Lipo the "boot" button doubles as a user button to select the pattern to display.
 
+Originally, I didn't include a 3.3V to 5V level shifter (74AHCT125) because I figured that 3.3V output would be high enough to work with TTL input monitors. This is true, but some monitors (e.g. the Mictovitec Cub) have pull-up resistors on the input going to 5V. **This isn't good for the 3.3V Pi and I fried a few outputs!** In the second version I added a 3.3V to 5V DC module and a 74AHCT125 used as a level shifter.
+
 ![Pico Lipo Schematic](schematic.png)
 
-I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a 3D printed carrier with button extensions to reach the buttons on board. The carrier is glued to the lid of the case and the board held in with M3 machine screws directly into the plastic. Suitable holes are cut in the case for the button extensions, USB connector, DIN socket and to view the LEDs. 
+The second version is constructed on pad-board with a 3D printed case.
+
+## Photos of the second versin (with level shifter on daughter board)
+
+![Pico Pattern V2 Case](photos/imgn2.jpg)
+
+![Pico Pattern V2 Open](photos/imgn3.jpg)
+
+
+## Photos of the first version (without level shifter)
 
 ![Pico Pattern Case](photos/img2.jpg)
 
@@ -54,7 +65,7 @@ I built it with point-to-point wiring in a hobby box. The Pico Lipo is held in a
 
 ## Hardware for Normal Pi Pico
 
-Connect the DIN socket as shown for the Pico Lipo. If you have a 5V system bus then connect the centre pin to 5V rather than 3.3V for a closer match to a real BBC Micro.
+Connect the DIN socket as shown for the Pico Lipo. If you have a 5V system bus then connect the 5V components to 5V rather than using a DC convertor.
 
 For a normal Pi Pico you will need to add an external user button and change the software to enable a pull up for the user button in the file `main.h`.
 
@@ -84,8 +95,6 @@ Holding the external button will choose sub-options in the pattern. Normally thi
 ## Notes
 
 Dean is very disparaging about Pico-mposite, but I think it works really well and demonstrates very nicely the power of the DMA and PIO state machines on the RP2040. Great work Dean! 
-
-The Pi Pico is a 3.3V part, but this should be over the 5V TTL threshold for a "high" signal. Therefore I have not included level shifters in this design. **Note that due to the lower voltage this pattern generator is more sensitive to bad connections than a 5V source would be. If there are problems then check all the connectors along the video path are clean and properly connected.**
 
 Currently the pattern generator only outputs RGB video. It could be adapted to use the existing work in Pico-mposite to output other video formats.
 

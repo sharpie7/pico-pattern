@@ -112,6 +112,11 @@ unsigned short vsync_ll[32] = {
  * The main routine sets up the whole shebang
  */
 int initialise_cvideo(void) { 
+	for(short i = 0; i < gpio_count; i++) {
+		gpio_init( i + gpio_base);
+		gpio_set_dir( i + gpio_base, GPIO_OUT);
+	}
+
     pio_0 = pio0;	                    // Assign the PIO
 
     // Load up the PIO programs

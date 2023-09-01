@@ -70,7 +70,7 @@
     #define VSHI        HSHI
 	// BORD must contain the sync level information as it is written by the sync PIO and not the data PIO
     #define BORD        0x8008
-    #define gpio_base   16
+    #define gpio_base   3
     #define gpio_count  4
 	// Setting gpio_data_count to less than gpio_count stops the data PIO writing to the bits only
 	// used for sync. Therefore the sync doesn't need to be included in the data bitmap
